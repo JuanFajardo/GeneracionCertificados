@@ -12,6 +12,7 @@
         <link href="{{asset('assets/css/templatemo-kind-heart-charity.css'); }}" rel="stylesheet">
         <link href="{{asset('assets/css/dataTables.bootstrap.css'); }}" rel="stylesheet">
         <link href="{{asset('assets/css/jquery.dataTables.min.css'); }}" rel="stylesheet">
+        <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
     </head>
     <body id="section_1">
         <header class="site-header d-lg-block d-none" style="background-color:#38709b;">
@@ -24,7 +25,7 @@
 
         <nav class="navbar navbar-expand-lg bg-light shadow-lg">
             <div class="container">
-                <a class="navbar-brand" href="{{('index.php'); }}">
+                <a class="navbar-brand" href="{{ asset('/') }}">
                     <img src="{{asset('assets/images/logo.png'); }}" alt="Logo HaBock" width="70">
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -33,14 +34,19 @@
                 <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav ms-auto">
                         <li class="nav-item">
-                            <a class="nav-link smoothscroll" href="{{('index.php'); }}">Inicio</a>
+                            <a class="nav-link smoothscroll" href="{{ asset('/') }}">Inicio</a>
                         </li>
                         <li class="nav-item dropdown">
                             <a class="nav-link click-scroll dropdown-toggle" href="" id="navbarLightDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                 Menu</a>
                             <ul class="dropdown-menu dropdown-menu-light" aria-labelledby="navbarLightDropdownMenuLink">
-                                <li><a class="dropdown-item" href="#">Menu 1</a></li>
-                                <li><a class="dropdown-item" href="#">Sub Menu1</a></li>
+                                <li><a class="dropdown-item" href="{{asset('index.php/estudiantes')}}">Estudiante</a></li>
+                                <li><a class="dropdown-item" href="{{asset('index.php/docentes')}}">Docente</a></li>
+                                <li><a class="dropdown-item" href="{{asset('index.php/cursos')}}">Cursos</a></li>
+                                <li><a class="dropdown-item" href="{{asset('index.php/certificados')}}">Certificado</a></li>
+                                <li><a class="dropdown-item" href="{{asset('index.php/relacion')}}">Relacion</a></li>
+                                <li><a class="dropdown-item" href="{{asset('index.php/consultas')}}">Consulta</a></li>
+                                <li><a class="dropdown-item" href="{{asset('index.php')}}"></a></li>
                             </ul>
                         </li>
                     </ul>
