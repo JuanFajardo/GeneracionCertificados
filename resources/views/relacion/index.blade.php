@@ -29,7 +29,7 @@ Lista de Relaciones
                 @foreach ($relaciones as $relacion)
                     <tr>
                         <td>
-                            <a href="{{ $relacion->link}}">{{ $relacion->estudiante->nombre ?? 'Sin asignar' }}</a>
+                            <a href="{{ asset('index.php/'.$relacion->link) }}">{{ $relacion->estudiante->nombre ?? 'Sin asignar' }}</a>
                         </td>
                         <td>{{ $relacion->curso->curso ?? 'Sin asignar' }}</td>
                         <td>{{ $relacion->docente->docente ?? 'Sin asignar' }}</td>
