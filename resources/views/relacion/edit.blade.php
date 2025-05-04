@@ -16,18 +16,29 @@ Editar Relacion
             @csrf
             @method('PUT') <!-- Indica que se usará el método PUT para actualizar -->
             <div class="row">
-                <div class="col-4">
+                <div class="col-3">
                     <label for="idestudiante" class="form-label">Estudiante</label>
                     <select name="idestudiante" id="idestudiante" class="form-control select2" required>
                         <option value="">-- Selecciona un estudiante --</option>
                         @foreach ($estudiantes as $estudiante)
                             <option value="{{ $estudiante->id }}" {{ $relacion->idestudiante == $estudiante->id ? 'selected' : '' }}>
-                                {{ $estudiante->nombre }}
+                                {{ $estudiante->nombre." ".$estudiante->paterno." ".$estudiante->materno }}
                             </option>
                         @endforeach
                     </select>
                 </div>
-                <div class="col-4">
+                <div class="col-3">
+                    <label for="idcertificado" class="form-label">Certificado</label>
+                    <select name="idcertificado" id="idcertificado" class="form-control" required>
+                        <option value="">-- Selecciona un docente --</option>
+                        @foreach ($certificados as $certificado)
+                            <option value="{{ $certificado->id }}"{{ $relacion->idcertificado == $certificado->id ? 'selected' : '' }}>
+                                {{ $certificado->imagen }}
+                            </option>
+                        @endforeach
+                    </select>
+                </div>
+                <div class="col-3">
                     <label for="idcurso" class="form-label">Curso</label>
                     <select name="idcurso" id="idcurso" class="form-control" required>
                         <option value="">-- Selecciona un curso --</option>
@@ -38,7 +49,7 @@ Editar Relacion
                         @endforeach
                     </select>
                 </div>
-                <div class="col-4">
+                <div class="col-3">
                     <label for="iddocente" class="form-label">Docente</label>
                     <select name="iddocente" id="iddocente" class="form-control" required>
                         <option value="">-- Selecciona un docente --</option>
@@ -84,7 +95,7 @@ Editar Relacion
                 </div>
             </div>
 
-            <button type="submit" class="btn btn-primary">Actualizar</button>
+            <button type="submit" class="btn btn-warning">Actualizar</button>
             <a href="{{ route('relacion.index') }}" class="btn btn-secondary">Cancelar</a>
         </form>
     </div>

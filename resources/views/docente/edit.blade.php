@@ -35,7 +35,7 @@ Editar Docente
                     <textarea name="cv" id="cv" class="form-control">{{ $docente->cv }}</textarea>
                 </div>
             </div>
-            <button type="submit" class="btn btn-primary">Actualizar</button>
+            <button type="submit" class="btn btn-warning">Actualizar</button>
             <a href="{{ route('docentes.index') }}" class="btn btn-secondary">Cancelar</a>
         </form>
     </div>

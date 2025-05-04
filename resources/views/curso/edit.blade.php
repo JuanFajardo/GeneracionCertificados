@@ -56,7 +56,7 @@ Editar Curso
                 <label for="descripcion" class="form-label">Descripción</label>
                 <textarea name="descripcion" id="descripcion" class="form-control">{{ $curso->descripcion }}</textarea>
             </div>
-            <button type="submit" class="btn btn-primary">Actualizar</button>
+            <button type="submit" class="btn btn-warning">Actualizar</button>
             <a href="{{ route('cursos.index') }}" class="btn btn-secondary">Cancelar</a>
         </form>
     </div>

@@ -60,7 +60,7 @@ Editar Estudiante
                     <input type="text" name="profesion" id="profesion" class="form-control" value="{{ $estudiante->profesion }}">
                 </div>
             </div>
-            <button type="submit" class="btn btn-primary">Actualizar</button>
+            <button type="submit" class="btn btn-warning">Actualizar</button>
             <a href="{{ route('estudiantes.index') }}" class="btn btn-secondary">Cancelar</a>
         </form>
     </div>

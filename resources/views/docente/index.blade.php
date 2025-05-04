@@ -12,7 +12,7 @@ Lista de Docentes
 @endif
 
 <div class="container">
-        <a href="{{ route('docentes.create') }}" class="btn btn-primary mb-3">Nuevo Docente</a>
+        <a href="{{ route('docentes.create') }}" class="btn btn-primary mb-3"> <i class="bi bi-plus-lg"></i> Nuevo </a>
         <table class="table table-bordered">
             <thead>
                 <tr>
@@ -31,11 +31,13 @@ Lista de Docentes
                         <td>{{ $docente->celular }}</td>
                         <td>{{ $docente->correo }}</td>
                         <td>
-                            <a href="{{ route('docentes.edit', $docente->id) }}" class="btn btn-warning btn-sm">Editar</a>
+                            <a href="{{ route('docentes.edit', $docente->id) }}" class="btn btn-warning btn-sm">
+                                <i class="bi bi-pencil"></i> Editar </a>
                             <form action="{{ route('docentes.destroy', $docente->id) }}" method="POST" style="display:inline;">
                                 @csrf
                                 @method('DELETE')
-                                <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('¿Estás seguro de eliminar este docente?')">Eliminar</button>
+                                <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('¿Estás seguro de eliminar este docente?')">
+                                    <i class="bi bi-eraser-fill"></i> Eliminar</button>
                             </form>
                         </td>
                     </tr>
