@@ -1,6 +1,12 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\EstudianteController;
+use App\Http\Controllers\CursoController;
+use App\Http\Controllers\DocenteController;
+use App\Http\Controllers\CertificadoController;
+use App\Http\Controllers\ConsultaController;
+use App\Http\Controllers\RelacionController;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,3 +22,13 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::resource('estudiantes', EstudianteController::class);
+Route::resource('cursos', CursoController::class);
+Route::resource('docentes', DocenteController::class);
+Route::resource('certificados', CertificadoController::class);
+Route::get('certificados/generar/{id}', [CertificadoController::class, 'generar'])->name('certificados.generar');
+Route::get('consultas', [ConsultaController::class, 'index']);
+Route::resource('relacion', RelacionController::class); 
+
+Route::get('{id}', [RelacionController::class, 'certificado'])->where('id', '[a-f0-9]{64}');
