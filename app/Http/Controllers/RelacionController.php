@@ -16,6 +16,7 @@ use App\Models\Estudiante;
 use App\Models\Curso;
 use App\Models\Docente;
 use App\Models\Consulta;
+use App\Models\Certificado;
 use Illuminate\Http\Request;
 
 class RelacionController extends Controller
@@ -33,7 +34,8 @@ class RelacionController extends Controller
         $estudiantes = Estudiante::all();
         $cursos = Curso::all();
         $docentes = Docente::all();
-        return view('relacion.create', compact('estudiantes', 'cursos', 'docentes'));
+        $certificados = Certificado::all();
+        return view('relacion.create', compact('estudiantes', 'cursos', 'docentes', 'certificados'));
     }
 
     // Guardar una nueva relación en la base de datos
@@ -55,7 +57,8 @@ class RelacionController extends Controller
         $estudiantes = Estudiante::all();
         $cursos = Curso::all();
         $docentes = Docente::all();
-        return view('relacion.edit', compact('relacion', 'estudiantes', 'cursos', 'docentes'));
+        $certificados = Certificado::all();
+        return view('relacion.edit', compact('relacion', 'estudiantes', 'cursos', 'docentes', 'certificados'));
     }
 
     // Actualizar una relación en la base de datos
@@ -105,7 +108,7 @@ class RelacionController extends Controller
         $consulta = new Consulta;
         $consulta->certificado = $id;
         $consulta->curso = $dato->curso;
-        $consulta->estudiante = $dato->nombre." ".$dato->paterno." ".$dato->materno;
+        $consulta->estudiante = $dato->nombre.$dato->paterno.$dato->materno;
         $consulta->ip = $request->ip();
         $consulta->agent = $request->header('User-Agent');
         $consulta->save();
@@ -128,9 +131,10 @@ class RelacionController extends Controller
         file_put_contents($qrTempPath, $result->getString());
 
         // Rutas de las imágenes
-        $baseImagePath = public_path('assets/certificado/hacking.png');
+        $baseImagePath = public_path('assets\\certificado\\'.$dato->imagen); //ruta del certificado base
+        
         $nombre = $dato->nombre . " " . $dato->paterno . " " . $dato->materno;
-        $fontPath = public_path('assets/fonts/FRSCRIPT.TTF');
+        $fontPath = public_path('assets\\fonts\\'.$dato->text_font); //Feunte de texto de la letra
 
         // Cargar imágenes
         $baseImage = imagecreatefrompng($baseImagePath);
@@ -144,7 +148,7 @@ class RelacionController extends Controller
         imagecopyresampled(
             $baseImage,
             $overlayImage,
-            0, 0, // Posición X, Y donde colocar la imagen
+            0, 0, 
             0, 0,
             imagesx($overlayImage),
             imagesy($overlayImage),
@@ -153,13 +157,14 @@ class RelacionController extends Controller
         );
 
         // Agregar texto
-        $textColor = imagecolorallocate($baseImage, 0, 0, 0); // Negro
+        $colors = explode(',', $dato->text_color);
+        $textColor = imagecolorallocate($baseImage, $colors[0], $colors[1], $colors[2]); //Negro
         imagettftext(
             $baseImage,
-            230, // Tamaño de fuente
-            0, // Ángulo
-            400, // Posición X del texto
-            1700, // Posición Y del texto
+            $dato->font_size, // Tamaño de fuente
+            $dato->font_angle, // Ángulo
+            $dato->x, // Posición X del texto
+            $dato->y, // Posición Y del texto
             $textColor,
             $fontPath,
             $nombre
