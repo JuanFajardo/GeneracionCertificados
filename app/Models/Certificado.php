@@ -9,7 +9,7 @@ class Certificado extends Model
 {
     use HasFactory;
     protected $fillable = [
-        'idcurso', 'iddocente', 'certificado', 'imagen', 'habilitado'
+        'idcurso', 'iddocente', 'certificado', 'imagen', 'font_size', 'font_angle', 'x', 'y', 'text_color', 'text_font', 'habilitado'
     ];
 
     // Relaciones con otras tablas
